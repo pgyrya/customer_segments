@@ -12125,9 +12125,9 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <ul>
-<li>The first sample customer - is spending most on fresh produce (17K per year), followed by grocery and frozen section (about 6K in total) - which seems similar to a large family.</li>
-<li>The second sample customer seems to be spending most on grocery, followed by fresh produce and delicatessen. With large total annual spending (65K) This customer could represent a restaurant</li>
-<li>The third sample customer is spending most of the annual budget on grocery and milk products, followed by detergent/paper - again, with the large annual budget of over 50K, it seems to be a business (e.g. restaurant), with quite different specialization compared to the first sample customer. </li>
+<li>The first sample customer - is spending most on fresh produce (17K per year which is more than 12K average), followed by grocery and frozen section (about 6K in total which is below 11K average) - this seems similar to a large family.</li>
+<li>The second sample customer seems to be spending most on grocery (9.4K which is a bit over average of about 8K), followed by fresh produce (7.8K which is below average of 12K) and delicatessen (2.6K which is a bit over average of 1.5K). With significant annual spending of 30K, this seems similar to a small business (e.g. small restaurant).</li>
+<li>The third sample customer is spending most of the annual budget on grocery and milk products (36K which is much larger than the average of 13.7K), followed by detergent/paper (10K compared to average of 2.9K). With such a large annual budget (54K), it seems to be a business (e.g. large restaurant). </li>
 </ul>
 
 </div>
@@ -14137,7 +14137,7 @@ OI7jOI7jOBPEJ1KO4ziO4ziO4zgTxCdSjuM4juM4juM4E8QnUo7jOI7jOI7jOBPEJ1KO4ziO4ziO
 <ul>
 <li>Grocery is strongly correlated with detergent/paper, and quite correlated with milk</li>
 <li>Naturally, detergent/paper is also quite correlated with milk</li>
-<li>As we can see from the diagonal charts showing density plot, distribution of all of these features looks concentrated on positive axis, with density plot peak clearly observable (this peak should be close to mean of corresponding distribution). This density plot resembles Gamma distribution rather than normal distribution.</li>
+<li>As we can see from the diagonal charts showing density plot, distribution of all of these features looks concentrated on positive axis, with density plot peak clearly observable (this peak should be close to mean of corresponding distribution). This density plot resembles both log-normal or Gamma distribution rather than normal distribution.</li>
 </ul>
 
 </div>
@@ -19199,7 +19199,8 @@ Once you have performed this implementation, the dataset will be stored in the v
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong> As evident from the above sorted array, observations with index 65, 66, 75, 128, 154 happen to be outlier in the sense of Turkey method - for at least 2 features. The above code automatically removes all outliers in the sense discussed above.</p>
+<p><strong>Answer:</strong> As evident from the above sorted array, observations with index 65, 66, 75, 128, 154 happen to be outlier in the sense of Turkey method - for at least 2 features. It is natural to remove such outliers so as to focus on patterns exhibited by majority of the data.</p>
+<p>The above code automatically removes <strong><em>all</em></strong> outliers in the sense of Turkey method identification, so that if an observation is an outlier for at least one feature - it would be removed.</p>
 
 </div>
 </div>
@@ -20993,10 +20994,14 @@ KOn/As4UOs7SpiG6AAAAAElFTkSuQmCC
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong> Here are pros and cons I could think of for the two clustering methods:</p>
 <ul>
-<li>K-means clustering is simple and straightforward, however it may potentially generate unintuitive results, or generate different results based on different randomization in the starting point. </li>
-<li>Gaussian Mixture Model would also give us likelihood of a point being sampled from a given cluster Gaussian model, so we can understand borderline cases better, and potentially sample new hypothetical customers from this mixture distribution. This mixture model could also give us an idea of the shape of the cluster similarly to how principal component analysis does.</li>
+<li><p>K-means clustering is simple and straightforward, however it only outputs 'hard clustering' meaning every point would belong to one of the clusters and there is no shades of grey in cluster assignment.</p>
+</li>
+<li><p>Gaussian Mixture Model (GMM) would also output likelihood of a point being sampled from a given cluster Gaussian model, thus enabling possibility of 'soft clustering' which would tag observations with less-than-certain clustering assignment as 'borderline'. Gaussian Mixture model is also generating richer output by giving us an idea of the shape of the observations in a cluster, similarly to how principal component analysis does. We could also then quantify whether a given customers is an outlier based on likelihood of similar customer being drawn from Gaussian distribution.</p>
+</li>
+<li><p>As a fine point, both clustering algorithms may generate different results based on different initial randomization, hence trying various initial randomization values could help establish more robust clustering.</p>
+</li>
 </ul>
-<p>I would pick Gaussian mixture model for classification.</p>
+<p>In this case, I would pick Gaussian mixture model for classification due to its potential to generate richer output which more fully describes customer base.</p>
 
 </div>
 </div>
