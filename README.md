@@ -1,2 +1,10 @@
-# customer_segments
-Practicing unsupervised learning algorithms to discover similarities between customers and come up with clusters based on similarities in spending patterns - Udacity Machine Learning nanodegree project 
+# Introduction
+This is an unsupervised Machine Learning project, part of Udacity nanodegree program, practicing: 
+
+* outlier detection, 
+* correlation analysis, 
+* data visualization, 
+* principal component analysis(PCA), 
+* clustering (Gaussian Mixture Model)
+
+The objective is to uncover hidden patterns in customer spending behavior and discover distribution this data may be sampled from. 
